@@ -144,7 +144,9 @@ public class ProsodyModulator {
 		for (int k = 0; k < sentences.getLength(); k++) {
 			Element sentence = (Element) sentences.item(k);
 			NodeList tkns = sentence.getElementsByTagName(MaryXML.TOKEN);
-			for (int j = 0; j < tkns.getLength()-1; j++) {
+			//TODO We are assuming all sentences end with a punctuation mark
+			int bp = 0;
+			for (int j = 0; j < tkns.getLength(); j++) {
 				Element token = (Element) tkns.item(j);
 				Element nextToken = null;
 				if(j<tkns.getLength()) {
@@ -171,7 +173,8 @@ public class ProsodyModulator {
 					// the break index:
 					if (bi > 0) {
 						boundary.setAttribute("breakindex", String.valueOf(bi));
-						boundary.setAttribute("duration", BoundaryPauses[j]);
+						boundary.setAttribute("duration", BoundaryPauses[bp]);
+						bp++;
 							//System.out.println(String.valueOf(BoundaryPauses[j]));
 						//boundary.setAttribute("duration", String.valueOf(50));
 					}
@@ -202,7 +205,8 @@ public class ProsodyModulator {
 					// Now the boundary tag is to be inserted.
 					boundary = MaryXML.createElement(doc, MaryXML.BOUNDARY);
 					boundary.setAttribute("breakindex", String.valueOf("1"));
-					boundary.setAttribute("duration", BoundaryPauses[j]);
+					boundary.setAttribute("duration", BoundaryPauses[bp]);
+					bp++;
 					//System.out.println(String.valueOf(BoundaryPauses[j]));
 					//boundary.setAttribute("duration", String.valueOf(100));
 					eIn.insertBefore(boundary, eBefore);

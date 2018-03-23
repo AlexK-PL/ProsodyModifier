@@ -92,7 +92,7 @@ public class ProsodyModulatorTest {
 		
 		String InputDurations[] = {"80", "120", "100", "300", "50", "320"};
 		//Same number of TOKENS (a punctuation next to a word is considered a unique element)
-		String BoundaryPauses [] = {"250", "200"};
+		String BoundaryPauses [] = {"250", "270"};
 		
 		String InputTextPath = "src/test/resources/sample_text.txt";
 		String outputWAVPath = "src/test/resources/modifiedF0Contour.wav";

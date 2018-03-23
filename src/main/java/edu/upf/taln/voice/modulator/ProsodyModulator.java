@@ -267,6 +267,7 @@ public class ProsodyModulator {
 		return doc;
 	}
 	
+	/// A function to check whether a token is a punctuation mark
 	protected boolean isPunctuation(Element token) {
 		if (token == null)
 			throw new NullPointerException("Received null token");
